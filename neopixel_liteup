@@ -1,0 +1,14 @@
+let strip = neopixel.create(DigitalPin.P0, 8, NeoPixelMode.RGBW)
+let range = strip.range(0, 7)
+huskylens.initI2c()
+huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
+basic.forever(function () {
+    if (huskylens.isLearned(1)) {
+        basic.showIcon(IconNames.Heart)
+    } else {
+        basic.showIcon(IconNames.SmallDiamond)
+        basic.pause(100)
+        basic.showIcon(IconNames.Diamond)
+        strip.showRainbow(1, 180)
+    }
+})
